@@ -42,4 +42,12 @@ jobs:
           -Dsonar.jacoco.reportPaths=target/jacoco.exec \
           -Dsonar.java.checkstyle.reportPaths=target/site/checkstyle-result.xml \
           -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
+    
+    - name: SonarQube Quality Gate
+      id: sonarqube-quality-gate
+      uses: sonarsource/sonarcloud-github-action@master
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
         
